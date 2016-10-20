@@ -1,12 +1,28 @@
-import React, {Component} from 'react';
+/**
+ * UI上通过更改背景图的位置控制数字
+ *
+ * this.state
+ * .remainTimes @ 倒计时剩余时间(s)
+ * .finished @ 是否结束
+ * .show @ 文字说明显示
+*/
+
+import React, {Component, PropTypes} from 'react';
 
 import '../css/base.css'
+
+const propTypes = {
+  endTime: PropTypes.string
+}
 
 class Countdown extends Component {
   constructor(props) {
     super(props);
 
-    this.endTime = props.endTime;
+    this.endTime = props.option.endTime;
+    this.step = props.option.step * 1000 || 1000;
+    this.info = props.option.imformation || '';
+
     this.state = {
       remainTimes: null,
       days: null,
@@ -19,6 +35,7 @@ class Countdown extends Component {
 
     this.tick = this.tick.bind(this);
 
+    // 设置样式
     this.style = {
       hh: 'item item-hh',
       hl: 'item item-hl',
@@ -32,7 +49,7 @@ class Countdown extends Component {
 
   componentDidMount() {
     this.tick();
-    this.interval = setInterval(this.tick, 1000);
+    this.interval = setInterval(this.tick, this.step); //1s计时一次
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -54,7 +71,7 @@ class Countdown extends Component {
   }
 
   setSec(preNum,num) {
-    let preNumL = preNum % 10,
+    let preNumL = preNum % 10, //获得上一次低位的值,以判断是否需要更新高位
         numH = Math.floor(num / 10),
         numL = num % 10;
 
@@ -137,6 +154,7 @@ class Countdown extends Component {
     this.setState({show: message});
   }
 
+  //将毫秒转换成时分秒
   getSeparateTime(remainTimes) {
     const sec = 1000,
           min = sec * 60,
@@ -157,11 +175,12 @@ class Countdown extends Component {
       finished: remainTimes <= 0 ? true : false
     });
 
-    let message = `还剩${days}天,`;
+    let message = `${this.info}还剩${days}天,`;
     return message;
   }
 
   render() {
+    //低于一天是不显示提示天数的信息
     let days = this.state.days === 0 ? '' : this.state.show;
     return(
       <div className="countdown">

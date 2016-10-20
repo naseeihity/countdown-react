@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "webpack-dev-server --progress --profile --colors --hot",
-    "build": "webpack --progress --profile --colors",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build": "webpack --progress --profile --colors"
   },
   "keywords": [
     "countdown",
