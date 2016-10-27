@@ -2,12 +2,12 @@
 
 ![](./img/demo.PNG)
 
-### about
+### About
 这是一个模仿“锤子科技”发布会倒计时的组件，因为觉得这是一个相当独立的组件，可以方便地复用，于是便使用React实现了一下，作为练习。
 
 数字跳动使用背景的图片的移动。
 
-### setup
+### Setup
 
 ```
 npm install
@@ -33,3 +33,7 @@ ReactDOM.render(
 ```
 
 目前只提供了几个简单定制，以后如果有新的想法会继续完善。
+
+### Demo
+
+[Click here](http://rssme.top/countdown-react)
