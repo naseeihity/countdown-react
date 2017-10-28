@@ -36,4 +36,4 @@ ReactDOM.render(
 
 ### Demo
 
-[Click here](https://github.com/naseeihity/countdown-react)
+[Click here](http://naseeihity.github.io/countdown-react)
